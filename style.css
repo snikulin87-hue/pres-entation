@@ -1,0 +1,190 @@
+:root {
+  --primary-navy: #1B2A4A;
+  --accent-blue: #3A6EA5;
+  --bg-white: #FFFFFF;
+  --bg-light: #F5F7F9;
+  --text-main: #2C3E50;
+  --text-light: #5A6B7C;
+  --border-color: #E0E6ED;
+  --pos-green: #27AE60;
+  --neg-red: #C0392B;
+  --font-main: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--bg-white);
+  font-family: var(--font-main);
+  color: var(--text-main);
+}
+
+.reveal {
+  font-family: var(--font-main);
+  color: var(--text-main);
+  background: var(--bg-white);
+  font-size: 20px;
+  /* Smaller base font for corporate feel */
+}
+
+/* Headers */
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  font-family: var(--font-main);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--primary-navy);
+  text-align: left;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.reveal h3::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent-blue);
+  margin-top: 10px;
+}
+
+.reveal h1 {
+  font-size: 2.5em;
+}
+
+.reveal h3 {
+  font-size: 1.6em;
+  margin-left: 5%;
+}
+
+.reveal h4 {
+  font-size: 1.1em;
+  color: var(--accent-blue);
+  margin-top: 25px;
+  margin-left: 5%;
+}
+
+/* Text Blocks */
+.text-block {
+  text-align: left;
+  line-height: 1.6;
+  margin: 0 auto;
+  width: 90%;
+  color: var(--text-main);
+}
+
+.text-block p {
+  margin-bottom: 15px;
+}
+
+.text-block ul,
+.text-block ol {
+  margin-left: 40px;
+  margin-bottom: 20px;
+  color: var(--text-light);
+}
+
+.text-block li {
+  margin-bottom: 8px;
+}
+
+.small-text {
+  font-size: 0.85em;
+}
+
+.small {
+  font-size: 0.7em;
+  color: var(--text-light);
+}
+
+/* Highlights & Boxes */
+.highlight-box {
+  background: var(--bg-light);
+  border-left: 4px solid var(--accent-blue);
+  padding: 20px;
+  margin-top: 25px;
+  box-shadow: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.text-accent {
+  color: var(--accent-blue);
+  font-weight: bold;
+}
+
+.dimmed {
+  opacity: 0.7;
+}
+
+/* Tables */
+.table-container {
+  overflow-x: auto;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.55em !important;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.finance-table th,
+.finance-table td {
+  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  text-align: right;
+  /* Numbers aligned right */
+}
+
+.finance-table td:first-child,
+.finance-table th:first-child {
+  text-align: left;
+  /* Headers aligned left */
+}
+
+.finance-table th {
+  background: var(--bg-light);
+  color: var(--primary-navy);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.finance-table tr:nth-child(even) {
+  background-color: #FAFCFF;
+}
+
+.finance-table .neg {
+  color: var(--neg-red);
+}
+
+.finance-table .pos {
+  color: var(--pos-green);
+  font-weight: bold;
+}
+
+/* Lists/Bullets */
+ul {
+  list-style-type: square;
+}
+
+/* Layout adjustments */
+.mt-4 {
+  margin-top: 2em;
+}
+
+.glow-text {
+  /* Remove glow, keep distinct corporate header style */
+  text-shadow: none;
+  background: none;
+  -webkit-text-fill-color: var(--primary-navy);
+  border-bottom: none;
+}
