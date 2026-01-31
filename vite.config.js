@@ -1,7 +1,7 @@
 export default {
     base: './',
     build: {
-        outDir: 'dist',
+        outDir: 'docs',
         rollupOptions: {
             input: {
                 main: 'index.html',
