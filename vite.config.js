@@ -5,7 +5,7 @@ export default {
         rollupOptions: {
             input: {
                 main: 'index.html',
-                landing: 'landing.html'
+                slides: 'slides.html'
             }
         }
     }
