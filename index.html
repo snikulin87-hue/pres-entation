@@ -351,6 +351,11 @@
                         </table>
                     </div>
                 </div>
+                <!-- Chart for Pessimistic -->
+                <div class="chart-container"
+                    style="position: relative; height:400px; width:100%; margin-top: 30px; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color);">
+                    <canvas id="chart-pessimistic"></canvas>
+                </div>
                 <div class="scenario-footer" style="text-align: left;">
                     <strong>Выводы (пессимистичный):</strong>
                     <ul style="margin: 10px 0 0 20px; color: #78350F;">
@@ -490,6 +495,11 @@
                             </tbody>
                         </table>
                     </div>
+                </div>
+                <!-- Chart for Average -->
+                <div class="chart-container"
+                    style="position: relative; height:400px; width:100%; margin-top: 30px; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color);">
+                    <canvas id="chart-average"></canvas>
                 </div>
                 <div class="scenario-footer" style="text-align: left;">
                     <strong>Выводы (средний):</strong>
@@ -632,6 +642,11 @@
                         </table>
                     </div>
                 </div>
+                <!-- Chart for Positive -->
+                <div class="chart-container"
+                    style="position: relative; height:400px; width:100%; margin-top: 30px; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color);">
+                    <canvas id="chart-positive"></canvas>
+                </div>
                 <div class="scenario-footer" style="text-align: left;">
                     <strong>Выводы (позитивный):</strong>
                     <ul style="margin: 10px 0 0 20px; color: #78350F;">
@@ -759,6 +774,7 @@
             event.currentTarget.classList.add("active");
         }
     </script>
+    <script type="module" src="/src/charts.js"></script>
 </body>
 
 </html>
