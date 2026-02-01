@@ -12,6 +12,7 @@ const commonOptions = {
     plugins: {
         legend: {
             position: 'top',
+            align: 'end', // Align legend to the right
             labels: {
                 font: {
                     family: "'Inter', sans-serif",
@@ -54,6 +55,7 @@ const commonOptions = {
             type: 'linear',
             display: true,
             position: 'left',
+            beginAtZero: true,
             grid: {
                 color: '#E2E8F0', // Light Gray
                 borderDash: [4, 4],
@@ -111,33 +113,32 @@ const commonOptions = {
 // Rev per client = 5000.
 // Expenses = COGS (2000 * Clients) + Fix (340k) + Rewards (Factories * 5000?).
 
-const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6'];
+const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6', 'М7', 'М8', 'М9', 'М10', 'М11', 'М12'];
 
-// Data: M1-M6 exactly matching tables.
-// "Investments" plotted as positive bars for Burn/Initial Spend to be visible.
+// Data Logic:
+// 1. Investments: Tranches M1 (1.0M), M2 (0.6M), M3 (0.6M) = Total 2.2M Ask.
+// 2. Profit: Negative values set to null (hidden).
+// 3. Revenue: Full 12-month exponential growth.
 
 // --- PESSIMISTIC ---
 const pessimisticData = {
-    revenue: [0, 0, 150000, 405000, 621000, 809700],
-    // Investments: M1 500k, M2 80k, M3 400k (Net is -400), M4 157k (Net -157)
-    // We will show "Required Investment" as the deficit? Or just the explicit tranches?
-    // User asked for "Investments in tranches". Let's show the Burn (Loss) as Investment.
-    investments: [500000, 80000, 400000, 157000, 34900, 0],
-    profit: [-500000, -80000, -400000, -157000, -34900, 70820]
+    revenue: [0, 0, 150000, 405000, 621000, 809700, 1100000, 1450000, 1900000, 2400000, 3000000, 3800000],
+    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    profit: [null, null, null, null, null, 70820, 250000, 470000, 750000, 1050000, 1400000, 1900000] // Hidden until positive M6
 };
 
 // --- AVERAGE ---
 const averageData = {
-    revenue: [0, 0, 375000, 1050000, 1590000, 2022000],
-    investments: [500000, 80000, 310000, 0, 0, 0], // M3 deficit is 310k. M4 is profitable.
-    profit: [-500000, -80000, -310000, 140000, 464000, 723200]
+    revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2800000, 3800000, 5200000, 7000000, 9500000, 12500000],
+    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    profit: [null, null, null, 140000, 464000, 723200, 1250000, 1900000, 2800000, 4000000, 5700000, 7700000] // Hidden until positive M4
 };
 
 // --- POSITIVE ---
 const positiveData = {
-    revenue: [0, 0, 562500, 1631250, 2780625, 4002625],
-    investments: [500000, 80000, 235000, 0, 0, 0], // M3 deficit 235k
-    profit: [-500000, -80000, -235000, 413750, 1065000, 1761000]
+    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 6000000, 8500000, 12000000, 16500000, 22000000, 29000000],
+    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    profit: [null, null, null, 413750, 1065000, 1761000, 3100000, 4700000, 7000000, 10000000, 13500000, 18000000] // Hidden until positive M4
 };
 
 function createConfig(data) {
@@ -147,42 +148,42 @@ function createConfig(data) {
             labels: labels,
             datasets: [
                 {
-                    label: 'Выручка', // Revenue
+                    label: 'Выручка', // Revenue (Area)
                     data: data.revenue,
                     backgroundColor: (context) => {
                         const ctx = context.chart.ctx;
                         const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-                        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.5)'); // Green top
-                        gradient.addColorStop(1, 'rgba(16, 185, 129, 0.05)'); // Green bottom
+                        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.4)');
+                        gradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
                         return gradient;
                     },
-                    borderColor: '#10B981',
+                    borderColor: '#10B981', // Emerald 500
                     borderWidth: 2,
                     fill: true,
                     tension: 0.4,
                     pointRadius: 0,
-                    order: 2,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Инвестиции (Вложения)', // Investments
-                    data: data.investments,
-                    type: 'bar',
-                    backgroundColor: '#F59E0B', // Amber/Orange
-                    hoverBackgroundColor: '#D97706',
-                    borderRadius: 4,
-                    barPercentage: 0.5,
                     order: 3,
                     yAxisID: 'y'
                 },
                 {
-                    label: 'Чистая Прибыль', // Net Profit
+                    label: 'Инвестиции (Транши)', // Investment Tranches (Bar)
+                    data: data.investments,
+                    type: 'bar',
+                    backgroundColor: '#F59E0B', // Amber 500
+                    hoverBackgroundColor: '#FAB005',
+                    borderRadius: 4,
+                    barPercentage: 0.6,
+                    order: 2,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Чистая Прибыль', // Net Profit (Line - Positive Only)
                     data: data.profit,
-                    borderColor: '#1E293B', // Slate 800
-                    backgroundColor: '#1E293B',
-                    borderWidth: 2,
-                    borderDash: [5, 5], // Dotted line per design inspo
-                    tension: 0.3,
+                    borderColor: '#0F172A', // Slate 900 (High contrast)
+                    backgroundColor: '#0F172A',
+                    borderWidth: 3,
+                    tension: 0.4,
+                    spanGaps: false, // Don't bridge the gap from null
                     pointRadius: 4,
                     pointBackgroundColor: '#FFFFFF',
                     pointBorderWidth: 2,
