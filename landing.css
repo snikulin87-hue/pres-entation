@@ -438,7 +438,7 @@ p {
     grid-template-columns: 1.5fr 1fr;
     gap: 60px;
     margin-top: 50px;
-    align-items: start;
+    /* align-items: start; Removed to allow stretch */
 }
 
 .offer-card {
@@ -450,6 +450,10 @@ p {
     overflow: hidden;
     position: relative;
     background: rgba(255, 255, 255, 0.03);
+    height: 100%;
+    /* Ensure it stretches */
+    display: flex;
+    flex-direction: column;
 }
 
 .offer-header {
