@@ -111,68 +111,78 @@ const commonOptions = {
 // Rev per client = 5000.
 // Expenses = COGS (2000 * Clients) + Fix (340k) + Rewards (Factories * 5000?).
 
-const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6', 'М7', 'М8', 'М9', 'М10', 'М11', 'М12'];
+const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6'];
 
-// Data Generation Logic: Exponential Growth for M7-M12 to show "Flight"
+// Data: M1-M6 exactly matching tables.
+// "Investments" plotted as positive bars for Burn/Initial Spend to be visible.
 
 // --- PESSIMISTIC ---
-// Conservative growth, but still positive trend.
 const pessimisticData = {
-    revenue: [0, 0, 150000, 405000, 621000, 809700, 1100000, 1450000, 1900000, 2400000, 3000000, 3800000],
-    expenses: [500000, 80000, 550000, 562000, 655400, 738800, 850000, 980000, 1150000, 1350000, 1600000, 1900000],
-    profit: [-500000, -80000, -400000, -157000, -34900, 70820, 250000, 470000, 750000, 1050000, 1400000, 1900000]
+    revenue: [0, 0, 150000, 405000, 621000, 809700],
+    // Investments: M1 500k, M2 80k, M3 400k (Net is -400), M4 157k (Net -157)
+    // We will show "Required Investment" as the deficit? Or just the explicit tranches?
+    // User asked for "Investments in tranches". Let's show the Burn (Loss) as Investment.
+    investments: [500000, 80000, 400000, 157000, 34900, 0],
+    profit: [-500000, -80000, -400000, -157000, -34900, 70820]
 };
 
 // --- AVERAGE ---
-// Strong "Hockey Stick" effect
 const averageData = {
-    revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2800000, 3800000, 5200000, 7000000, 9500000, 12500000],
-    expenses: [500000, 80000, 685000, 910000, 1126000, 1298800, 1550000, 1900000, 2400000, 3000000, 3800000, 4800000],
-    profit: [-500000, -80000, -310000, 140000, 464000, 723200, 1250000, 1900000, 2800000, 4000000, 5700000, 7700000]
+    revenue: [0, 0, 375000, 1050000, 1590000, 2022000],
+    investments: [500000, 80000, 310000, 0, 0, 0], // M3 deficit is 310k. M4 is profitable.
+    profit: [-500000, -80000, -310000, 140000, 464000, 723200]
 };
 
 // --- POSITIVE ---
-// "To the Moon"
 const positiveData = {
-    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 6000000, 8500000, 12000000, 16500000, 22000000, 29000000],
-    expenses: [500000, 80000, 797500, 1217500, 1715000, 2241000, 2900000, 3800000, 5000000, 6500000, 8500000, 11000000],
-    profit: [-500000, -80000, -235000, 413750, 1065000, 1761000, 3100000, 4700000, 7000000, 10000000, 13500000, 18000000]
+    revenue: [0, 0, 562500, 1631250, 2780625, 4002625],
+    investments: [500000, 80000, 235000, 0, 0, 0], // M3 deficit 235k
+    profit: [-500000, -80000, -235000, 413750, 1065000, 1761000]
 };
 
 function createConfig(data) {
     return {
-        type: 'bar',
+        type: 'line', // Base type
         data: {
             labels: labels,
             datasets: [
                 {
                     label: 'Выручка', // Revenue
                     data: data.revenue,
-                    backgroundColor: 'rgba(16, 185, 129, 0.85)', // Emerald 500
-                    hoverBackgroundColor: '#10B981',
-                    borderRadius: 6,
-                    barPercentage: 0.7,
+                    backgroundColor: (context) => {
+                        const ctx = context.chart.ctx;
+                        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                        gradient.addColorStop(0, 'rgba(16, 185, 129, 0.5)'); // Green top
+                        gradient.addColorStop(1, 'rgba(16, 185, 129, 0.05)'); // Green bottom
+                        return gradient;
+                    },
+                    borderColor: '#10B981',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 0,
                     order: 2,
                     yAxisID: 'y'
                 },
                 {
-                    label: 'Вложения / Расходы', // Expenses
-                    data: data.expenses,
-                    backgroundColor: 'rgba(239, 68, 68, 0.85)', // Red 500
-                    hoverBackgroundColor: '#EF4444',
-                    borderRadius: 6,
-                    barPercentage: 0.7,
+                    label: 'Инвестиции (Вложения)', // Investments
+                    data: data.investments,
+                    type: 'bar',
+                    backgroundColor: '#F59E0B', // Amber/Orange
+                    hoverBackgroundColor: '#D97706',
+                    borderRadius: 4,
+                    barPercentage: 0.5,
                     order: 3,
                     yAxisID: 'y'
                 },
                 {
                     label: 'Чистая Прибыль', // Net Profit
                     data: data.profit,
-                    type: 'line',
                     borderColor: '#1E293B', // Slate 800
                     backgroundColor: '#1E293B',
-                    borderWidth: 3,
-                    tension: 0.4, // Smooths the curve for "flight" effect
+                    borderWidth: 2,
+                    borderDash: [5, 5], // Dotted line per design inspo
+                    tension: 0.3,
                     pointRadius: 4,
                     pointBackgroundColor: '#FFFFFF',
                     pointBorderWidth: 2,
