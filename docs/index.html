@@ -67,6 +67,7 @@
         </div>
     </header>
 
+
     <!-- Marketing Strategy Section -->
     <section class="section-light">
         <div class="container grid-2-col">
@@ -105,27 +106,10 @@
         </div>
     </section>
 
-
-
-    <!-- Section 5: Team -->
-    <section class="section-white">
-        <div class="container">
-            <h2>4. Команда и горизонт</h2>
-            <div class="text-block" style="max-width: 800px; margin: 0 auto; text-align: left;">
-                <ul class="clean-list">
-                    <li>ассистент (операционка/коммуникации)</li>
-                    <li>sales (закрытие производств)</li>
-                    <li>project/аккаунт (внедрение и сопровождение без давления на чужих менеджеров)</li>
-                </ul>
-                <p style="margin-top: 20px; font-weight: 600;">По модели задача достижима в горизонте до 6 месяцев.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 6: Model Description -->
+    <!-- Section 4: Model Description (Moved Up) -->
     <section class="section-light">
         <div class="container">
-            <h2>5. Понятное описание модели (как это работает)</h2>
+            <h2>4. Понятное описание модели (как это работает)</h2>
             <div class="grid-2-col" style="align-items: start; text-align: left;">
 
                 <div class="card">
@@ -166,7 +150,22 @@
         </div>
     </section>
 
-    <!-- Section 7: Price Undervalued -->
+    <!-- Section 5: Team (Moved Down) -->
+    <section class="section-white">
+        <div class="container">
+            <h2>5. Команда и горизонт</h2>
+            <div class="text-block" style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <ul class="clean-list">
+                    <li>ассистент (операционка/коммуникации)</li>
+                    <li>sales (закрытие производств)</li>
+                    <li>project/аккаунт (внедрение и сопровождение без давления на чужих менеджеров)</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: 600;">По модели задача достижима в горизонте до 6 месяцев.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Price Undervalued -->
     <section class="section-white">
         <div class="container">
             <h2>6. В модели занижена цена</h2>
@@ -200,9 +199,11 @@
                 </div>
                 <div class="card">
                     <h4>Бюджет на запуск</h4>
-                    <p>Для старта достаточно <strong>1.5 млн ₽</strong>.</p>
-                    <p>Я закладываю запас до <strong>2.2 млн ₽</strong> на непредвиденные расходы, доукомплектование
-                        команды и тест гипотез.</p>
+                    <ul class="clean-list" style="margin-top: 10px; color: var(--text-light);">
+                        <li><strong>Минимум:</strong> 1.5 млн ₽ (MVP + тест)</li>
+                        <li><strong>Комфорт:</strong> 1.8 млн ₽ (основная команда)</li>
+                        <li><strong>Ускорение:</strong> 2.2 млн ₽ (запас на гипотезы)</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -217,8 +218,7 @@
 
             <div class="tabs">
                 <button class="tab-btn" onclick="openTab('pessimistic')">Пессимистичный</button>
-                <button class="tab-btn active" onclick="openTab('average')">Средний <span
-                        class="tab-badge">Базовый</span></button>
+                <button class="tab-btn active" onclick="openTab('average')">Средний</button>
                 <button class="tab-btn" onclick="openTab('positive')">Позитивный</button>
             </div>
 
@@ -255,7 +255,7 @@
                                     <th>Фикс</th>
                                     <th>Разовые</th>
                                     <th>Чистый</th>
-                                    <th>Куум</th>
+                                    <th>Кумулятивно</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -400,7 +400,7 @@
                                     <th>Фикс</th>
                                     <th>Разовые</th>
                                     <th>Чистый</th>
-                                    <th>Куум</th>
+                                    <th>Кумулятивно</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -546,7 +546,7 @@
                                     <th>Фикс</th>
                                     <th>Разовые</th>
                                     <th>Чистый</th>
-                                    <th>Куум</th>
+                                    <th>Кумулятивно</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -661,98 +661,86 @@
         </div>
     </section>
 
-    <!-- Section 8: Flexible Offer -->
+    <!-- Section: Flexible Offer (Final Text) -->
     <section class="section-dark">
         <div class="container">
-            <h2>Гибкая инвестиционная схема (траншами)</h2>
-            <div class="offer-grid">
-                <div class="offer-text">
-                    <p class="subtitle"
-                        style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6;">
-                        Я оцениваю старт проекта по моделям примерно в 2,2 млн ₽, но могу ошибаться: продукт может
-                        быстро “залететь” и выйти на самоокупаемость раньше, а может потребоваться дольше “раскачивать”
-                        до критической массы. Поэтому предлагаю прозрачную схему: <strong>доля = фактически вложенные
-                            деньги</strong>.
-                    </p>
+            <h2>Инвестиционное предложение (гибкая доля, траншами)</h2>
 
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color:white; margin-bottom: 10px;">Оценка и вилка доли</h4>
-                        <p style="color: rgba(255,255,255,0.8);">Я оцениваю 25% компании в 2,2 млн ₽ → оценка компании
-                            сейчас 8,8 млн ₽.<br>
-                            Готов обсуждать долю от 15% до 30% — в зависимости от того, сколько денег реально
-                            потребуется до самоокупаемости.</p>
-                    </div>
+            <div class="text-block" style="text-align: left; max-width: 900px; margin: 0 auto;">
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); line-height: 1.6; margin-bottom: 40px;">
+                    Я оцениваю потребность в капитале на старт примерно в 2,2 млн ₽, но проект новый: возможно, выйдем
+                    на самоокупаемость быстрее — или потребуется больше времени, чтобы раскрутить маховик. Поэтому
+                    предлагаю прозрачную схему: доля зависит от фактически вложенной суммы до самоокупаемости.
+                </p>
 
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color:white; margin-bottom: 10px;">Почему 25% — базовая точка</h4>
-                        <p style="color: rgba(255,255,255,0.8);">Базовая доля 25% взята из логики “цены денег” в РФ:
-                            ориентир по рынку — около 30% годовых, то есть инвестор обычно ожидает окупаемость порядка 3
-                            лет.<br>
-                            Также в MVP уже вложены мои деньги (≈300 000 ₽), поэтому стартовая доля для инвестора не
-                            завышена.</p>
-                    </div>
+                <div class="grid-2-col" style="align-items: start; gap: 40px;">
+                    <!-- Left: Valuation & Shares -->
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                        <h3
+                            style="color: white; margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+                            Оценка компании</h3>
+                        <p style="margin-bottom: 20px;"><strong>25% = 2,2 млн ₽</strong> → оценка 8,8 млн ₽ (pre-money)
+                        </p>
+                        <p
+                            style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5; margin-bottom: 25px;">
+                            (25% — базовая точка: цена денег на рынке РФ ≈ 30% годовых, ~3 года окупаемости; часть риска
+                            уже снята тем, что MVP протестирован и получил положительную обратную связь.)
+                        </p>
 
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color:white; margin-bottom: 10px;">Текущее состояние</h4>
-                        <ul class="clean-list" style="color: rgba(255,255,255,0.8);">
-                            <li>✅ MVP уже протестирован на целевой аудитории</li>
-                            <li>✅ Получена положительная обратная связь и готовность покупать</li>
-                            <li>✅ Продукт готов к запуску полноценной версии (КП + визуализация в одном приложении)</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="offer-card">
-                    <div class="offer-header">
-                        <h3 style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 10px;">Инвестиции</h3>
-                        <div class="price-tag" style="font-size: 2rem; line-height: 1.2;">15–30% доли<br><span
-                                style="font-size: 1.2rem; font-weight: normal; opacity: 0.9;">(траншами)</span></div>
-                    </div>
-
-                    <div class="offer-body" style="text-align: left;">
-                        <!-- Mini Table -->
-                        <div
-                            style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 15px; margin: 20px 0;">
-                            <div
-                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; font-weight: 500;">
-                                <span>15%</span> <span>1 320 000 ₽</span>
-                            </div>
-                            <div
-                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; font-weight: 500;">
-                                <span>20%</span> <span>1 760 000 ₽</span>
-                            </div>
-                            <div
-                                style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; margin-bottom: 8px; font-weight: 700; color: var(--accent-blue-light);">
-                                <span>25%</span> <span>2 200 000 ₽</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; font-weight: 500;">
-                                <span>30%</span> <span>2 640 000 ₽</span>
-                            </div>
-                        </div>
-
-                        <!-- Tranche Rules -->
-                        <h4 style="color:white; font-size: 1rem; margin-bottom: 15px;">Правила траншей:</h4>
+                        <h4 style="color: white; margin-bottom: 15px;">Вилка доли:</h4>
                         <ul class="clean-list"
-                            style="font-size: 0.9rem; color: rgba(255,255,255,0.8); margin-bottom: 25px;">
-                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;"><span
-                                    style="position: absolute; left: 0;">✅</span> Инвестиции вносятся траншами, без
-                                необходимости “сразу всей суммой”.</li>
-                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;"><span
-                                    style="position: absolute; left: 0;">✅</span> Если проект выходит на самоокупаемость
-                                раньше, я фиксирую долю по фактически вложенной сумме.</li>
-                            <li style="margin-bottom: 10px; padding-left: 20px; position: relative;"><span
-                                    style="position: absolute; left: 0;">✅</span> Если требуется больше денег, доля
-                                увеличивается пропорционально — но не выше 30%.</li>
-                            <li style="padding-left: 20px; position: relative;"><span
-                                    style="position: absolute; left: 0;">🛑</span> Стоп-условие: если достигли 30% (2,64
-                                млн ₽) и нет окупаемости — пивот / жёсткие меры.</li>
+                            style="font-family: monospace; font-size: 1rem; color: rgba(255,255,255,0.9);">
+                            <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>15%</span> <span>= 1 320 000 ₽</span></li>
+                            <li style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span>20%</span> <span>= 1 760 000 ₽</span></li>
+                            <li
+                                style="display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; color: #60A5FA;">
+                                <span>25%</span> <span>= 2 200 000 ₽</span></li>
+                            <li style="display: flex; justify-content: space-between;"><span>30%</span> <span>= 2 640
+                                    000 ₽</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Right: Rules & Stops -->
+                    <div>
+                        <h3 style="color: white; margin-bottom: 15px;">Правила</h3>
+                        <ul class="clean-list"
+                            style="color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 0.95rem;">
+                            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: #34D399;">●</span>
+                                Инвестиции идут траншами, без необходимости “всё сразу”.
+                            </li>
+                            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: #34D399;">●</span>
+                                Если проект выходит на самоокупаемость раньше, фиксируем долю по фактически вложенной
+                                сумме.
+                            </li>
+                            <li style="margin-bottom: 15px; padding-left: 20px; position: relative;">
+                                <span style="position: absolute; left: 0; color: #34D399;">●</span>
+                                Если нужно больше капитала — доля растёт, но не выше 30%.
+                            </li>
                         </ul>
 
-                        <!-- CTA -->
                         <div
-                            style="text-align: center; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; color: rgba(255,255,255,0.9); font-size: 0.95rem; font-weight: 500;">
-                            Обсудим условия и зафиксируем транши + контрольные точки в договоре.
+                            style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); padding: 15px; border-radius: 8px; margin-bottom: 30px;">
+                            <strong style="display: block; color: #F87171; margin-bottom: 5px;">Стоп-условие:</strong>
+                            <span style="font-size: 0.9rem; color: rgba(255,255,255,0.9);">если достигли 30% и
+                                самоокупаемости нет — пивот / жёсткая стратегия / пересборка модели.</span>
                         </div>
+
+                        <h3 style="color: white; margin-bottom: 15px;">Статус на сегодня:</h3>
+                        <ul class="clean-list" style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">
+                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✅</span>
+                                MVP протестирован на ЦА, получена положительная обратная связь и готовность покупать.
+                            </li>
+                            <li style="padding-left: 25px; position: relative;">
+                                <span style="position: absolute; left: 0;">✅</span>
+                                Продукт готов к запуску полноценной версии (КП + визуализация в одном приложении).
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
