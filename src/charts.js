@@ -15,37 +15,34 @@ const commonOptions = {
             labels: {
                 font: {
                     family: "'Inter', sans-serif",
-                    size: 12,
+                    size: 13,
                     weight: 500
                 },
-                color: '#64748B',
+                color: '#64748B', // Slate 500
                 usePointStyle: true,
-                pointStyle: 'circle'
+                pointStyle: 'circle',
+                padding: 20
             }
         },
         tooltip: {
-            backgroundColor: '#1E293B',
+            backgroundColor: '#0F172A', // Slate 900
             titleColor: '#F8FAFC',
-            bodyColor: '#CBD5E1',
+            bodyColor: '#E2E8F0',
             borderColor: 'rgba(255,255,255,0.1)',
             borderWidth: 1,
-            padding: 10,
-            titleFont: { family: "'Inter', sans-serif", size: 13, weight: 600 },
-            bodyFont: { family: "'Inter', sans-serif", size: 12 },
+            padding: 12,
+            titleFont: { family: "'Inter', sans-serif", size: 14, weight: 600 },
+            bodyFont: { family: "'Inter', sans-serif", size: 13 },
+            displayColors: true,
+            boxPadding: 4,
             callbacks: {
                 label: function (context) {
                     let label = context.dataset.label || '';
                     if (label) {
                         label += ': ';
                     }
-                    if (context.dataset.yAxisID === 'y') {
-                        // Formatting currency
-                        if (context.parsed.y !== null) {
-                            label += new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumSignificantDigits: 3 }).format(context.parsed.y);
-                        }
-                    } else {
-                        // Formatting clients
-                        label += Math.round(context.parsed.y);
+                    if (context.parsed.y !== null) {
+                        label += new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', maximumFractionDigits: 0 }).format(context.parsed.y);
                     }
                     return label;
                 }
@@ -58,38 +55,33 @@ const commonOptions = {
             display: true,
             position: 'left',
             grid: {
-                color: '#F1F5F9',
-                borderDash: [5, 5]
-            },
-            ticks: {
-                color: '#94A3B8',
-                font: { family: "'Inter', sans-serif", size: 11 },
-                callback: function (value) {
-                    return (value / 1000) + 'k'; // Abbreviate thousands
-                }
-            }
-        },
-        y1: {
-            type: 'linear',
-            display: true,
-            position: 'right',
-            grid: {
-                drawOnChartArea: false, // only want the grid lines for one axis to show up
-            },
-            ticks: {
-                color: '#3B82F6', // Blue for clients
-                font: { family: "'Inter', sans-serif", size: 11 },
-                callback: (value) => Math.floor(value)
-            }
-        },
-        x: {
-            grid: {
-                display: false
+                color: '#E2E8F0', // Light Gray
+                borderDash: [4, 4],
+                drawBorder: false
             },
             ticks: {
                 color: '#64748B',
-                font: { family: "'Inter', sans-serif", size: 11, weight: 600 }
-            }
+                font: { family: "'Inter', sans-serif", size: 11, weight: 500 },
+                padding: 10,
+                callback: function (value) {
+                    if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                    if (value >= 1000) return (value / 1000).toFixed(0) + 'k';
+                    return value;
+                }
+            },
+            border: { display: false }
+        },
+        x: {
+            grid: {
+                display: false,
+                drawBorder: false
+            },
+            ticks: {
+                color: '#475569',
+                font: { family: "'Inter', sans-serif", size: 12, weight: 600 },
+                padding: 10
+            },
+            border: { display: false }
         }
     }
 };
@@ -115,34 +107,36 @@ const commonOptions = {
 
 // Extrapolation (Linear growth of factories + compounding clients)
 // M7-M12: +30 new factories/mo.
-// Clients growth: approx +100 net new per month? (404-318=86). Let's use ~+90-100/mo.
+// Clients growth: approx +90-100/mo.
 // Rev per client = 5000.
 // Expenses = COGS (2000 * Clients) + Fix (340k) + Rewards (Factories * 5000?).
 
 const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6', 'М7', 'М8', 'М9', 'М10', 'М11', 'М12'];
 
-// --- PESSIMISTIC DATA ---
+// Data Generation Logic: Exponential Growth for M7-M12 to show "Flight"
+
+// --- PESSIMISTIC ---
+// Conservative growth, but still positive trend.
 const pessimisticData = {
-    revenue: [0, 0, 150000, 405000, 621000, 809700, 1000000, 1200000, 1400000, 1600000, 1800000, 2000000],
-    expenses: [500000, 80000, 550000, 562000, 655400, 738800, 850000, 950000, 105000, 1150000, 1250000, 1350000],
-    profit: [-500000, -80000, -400000, -157000, -34900, 70820, 150000, 250000, 350000, 450000, 550000, 650000],
-    clients: [0, 0, 30, 81, 124, 162, 200, 240, 280, 320, 360, 400]
+    revenue: [0, 0, 150000, 405000, 621000, 809700, 1100000, 1450000, 1900000, 2400000, 3000000, 3800000],
+    expenses: [500000, 80000, 550000, 562000, 655400, 738800, 850000, 980000, 1150000, 1350000, 1600000, 1900000],
+    profit: [-500000, -80000, -400000, -157000, -34900, 70820, 250000, 470000, 750000, 1050000, 1400000, 1900000]
 };
 
-// --- AVERAGE DATA ---
+// --- AVERAGE ---
+// Strong "Hockey Stick" effect
 const averageData = {
-    revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2500000, 3000000, 3500000, 4000000, 4500000, 5000000],
-    expenses: [500000, 80000, 685000, 910000, 1126000, 1298800, 1500000, 1700000, 1900000, 2100000, 2300000, 2500000],
-    profit: [-500000, -80000, -310000, 140000, 464000, 723200, 1000000, 1300000, 1600000, 1900000, 2200000, 2500000],
-    clients: [0, 0, 75, 210, 318, 404, 500, 600, 700, 800, 900, 1000]
+    revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2800000, 3800000, 5200000, 7000000, 9500000, 12500000],
+    expenses: [500000, 80000, 685000, 910000, 1126000, 1298800, 1550000, 1900000, 2400000, 3000000, 3800000, 4800000],
+    profit: [-500000, -80000, -310000, 140000, 464000, 723200, 1250000, 1900000, 2800000, 4000000, 5700000, 7700000]
 };
 
-// --- POSITIVE DATA ---
+// --- POSITIVE ---
+// "To the Moon"
 const positiveData = {
-    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 5200000, 6400000, 7600000, 8800000, 10000000, 11200000],
-    expenses: [500000, 80000, 797500, 1217500, 1715000, 2241000, 2700000, 3200000, 3700000, 4200000, 4700000, 5200000],
-    profit: [-500000, -80000, -235000, 413750, 1065000, 1761000, 2500000, 3200000, 3900000, 4600000, 5300000, 6000000],
-    clients: [0, 0, 112, 326, 556, 800, 1040, 1280, 1520, 1760, 2000, 2400]
+    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 6000000, 8500000, 12000000, 16500000, 22000000, 29000000],
+    expenses: [500000, 80000, 797500, 1217500, 1715000, 2241000, 2900000, 3800000, 5000000, 6500000, 8500000, 11000000],
+    profit: [-500000, -80000, -235000, 413750, 1065000, 1761000, 3100000, 4700000, 7000000, 10000000, 13500000, 18000000]
 };
 
 function createConfig(data) {
@@ -152,45 +146,39 @@ function createConfig(data) {
             labels: labels,
             datasets: [
                 {
-                    label: 'Выручка',
+                    label: 'Выручка', // Revenue
                     data: data.revenue,
-                    backgroundColor: '#10B981', // Green
-                    borderRadius: 4,
+                    backgroundColor: 'rgba(16, 185, 129, 0.85)', // Emerald 500
+                    hoverBackgroundColor: '#10B981',
+                    borderRadius: 6,
+                    barPercentage: 0.7,
                     order: 2,
                     yAxisID: 'y'
                 },
                 {
-                    label: 'Расходы',
+                    label: 'Вложения / Расходы', // Expenses
                     data: data.expenses,
-                    backgroundColor: '#EF4444', // Red
-                    borderRadius: 4,
+                    backgroundColor: 'rgba(239, 68, 68, 0.85)', // Red 500
+                    hoverBackgroundColor: '#EF4444',
+                    borderRadius: 6,
+                    barPercentage: 0.7,
                     order: 3,
                     yAxisID: 'y'
                 },
                 {
-                    label: 'Чистая Прибыль',
+                    label: 'Чистая Прибыль', // Net Profit
                     data: data.profit,
                     type: 'line',
-                    borderColor: '#0F172A', // Navy
-                    backgroundColor: '#0F172A',
-                    borderWidth: 2,
-                    tension: 0.3,
-                    pointRadius: 3,
+                    borderColor: '#1E293B', // Slate 800
+                    backgroundColor: '#1E293B',
+                    borderWidth: 3,
+                    tension: 0.4, // Smooths the curve for "flight" effect
+                    pointRadius: 4,
+                    pointBackgroundColor: '#FFFFFF',
+                    pointBorderWidth: 2,
+                    pointHoverRadius: 6,
                     order: 1,
                     yAxisID: 'y'
-                },
-                {
-                    label: 'Клиенты (плат)',
-                    data: data.clients,
-                    type: 'line',
-                    borderColor: '#3B82F6', // Blue
-                    backgroundColor: '#3B82F6',
-                    borderWidth: 2,
-                    borderDash: [5, 5],
-                    tension: 0.3,
-                    pointRadius: 0,
-                    order: 0,
-                    yAxisID: 'y1'
                 }
             ]
         },
