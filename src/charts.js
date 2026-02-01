@@ -113,32 +113,32 @@ const commonOptions = {
 // Rev per client = 5000.
 // Expenses = COGS (2000 * Clients) + Fix (340k) + Rewards (Factories * 5000?).
 
-const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6', 'М7', 'М8', 'М9', 'М10', 'М11', 'М12'];
+const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6', 'М7', 'М8', 'М9'];
 
 // Data Logic:
 // 1. Investments: Tranches M1 (1.0M), M2 (0.6M), M3 (0.6M) = Total 2.2M Ask.
 // 2. Profit: Negative values set to null (hidden).
-// 3. Revenue: Full 12-month exponential growth.
+// 3. Revenue: Full 9-month exponential growth.
 
 // --- PESSIMISTIC ---
 const pessimisticData = {
-    revenue: [0, 0, 150000, 405000, 621000, 809700, 1100000, 1450000, 1900000, 2400000, 3000000, 3800000],
-    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    profit: [null, null, null, null, null, 70820, 250000, 470000, 750000, 1050000, 1400000, 1900000] // Hidden until positive M6
+    revenue: [0, 0, 150000, 405000, 621000, 809700, 1100000, 1450000, 1900000],
+    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0],
+    profit: [null, null, null, null, null, 70820, 250000, 470000, 750000] // Hidden until positive M6
 };
 
 // --- AVERAGE ---
 const averageData = {
-    revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2800000, 3800000, 5200000, 7000000, 9500000, 12500000],
-    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    profit: [null, null, null, 140000, 464000, 723200, 1250000, 1900000, 2800000, 4000000, 5700000, 7700000] // Hidden until positive M4
+    revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2800000, 3800000, 5200000],
+    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0],
+    profit: [null, null, null, 140000, 464000, 723200, 1250000, 1900000, 2800000] // Hidden until positive M4
 };
 
 // --- POSITIVE ---
 const positiveData = {
-    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 6000000, 8500000, 12000000, 16500000, 22000000, 29000000],
-    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    profit: [null, null, null, 413750, 1065000, 1761000, 3100000, 4700000, 7000000, 10000000, 13500000, 18000000] // Hidden until positive M4
+    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 6000000, 8500000, 12000000],
+    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0],
+    profit: [null, null, null, 413750, 1065000, 1761000, 3100000, 4700000, 7000000] // Hidden until positive M4
 };
 
 function createConfig(data) {
