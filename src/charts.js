@@ -120,25 +120,11 @@ const labels = ['М1', 'М2', 'М3', 'М4', 'М5', 'М6', 'М7', 'М8', 'М9'];
 // 2. Profit: Negative values set to null (hidden).
 // 3. Revenue: Full 9-month exponential growth.
 
-// --- PESSIMISTIC ---
-const pessimisticData = {
-    revenue: [0, 0, 150000, 405000, 621000, 809700, 1100000, 1450000, 1900000],
-    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0],
-    profit: [null, null, null, null, null, 70820, 250000, 470000, 750000] // Hidden until positive M6
-};
-
 // --- AVERAGE ---
 const averageData = {
     revenue: [0, 0, 375000, 1050000, 1590000, 2022000, 2800000, 3800000, 5200000],
     investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0],
     profit: [null, null, null, 140000, 464000, 723200, 1250000, 1900000, 2800000] // Hidden until positive M4
-};
-
-// --- POSITIVE ---
-const positiveData = {
-    revenue: [0, 0, 562500, 1631250, 2780625, 4002625, 6000000, 8500000, 12000000],
-    investments: [1000000, 600000, 600000, 0, 0, 0, 0, 0, 0],
-    profit: [null, null, null, 413750, 1065000, 1761000, 3100000, 4700000, 7000000] // Hidden until positive M4
 };
 
 function createConfig(data) {
@@ -198,10 +184,6 @@ function createConfig(data) {
 }
 
 // Initial Render
-const ctxP = document.getElementById('chart-pessimistic');
 const ctxA = document.getElementById('chart-average');
-const ctxPos = document.getElementById('chart-positive');
 
-if (ctxP) new Chart(ctxP, createConfig(pessimisticData));
 if (ctxA) new Chart(ctxA, createConfig(averageData));
-if (ctxPos) new Chart(ctxPos, createConfig(positiveData));

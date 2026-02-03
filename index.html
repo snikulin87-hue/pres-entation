@@ -262,486 +262,226 @@
 
 
 
-    <!-- Finance Intro -->
-    <section class="section-light">
+    <!-- Financial Model Single Scenario -->
+    <section class="section-light" id="financial-model">
         <div class="container">
-            <h2>О чём расчёты ниже</h2>
-            <div class="grid-2-col">
-                <div>
-                    <p class="subtitle" style="font-size: 1rem;">Ниже я посчитал финансовую модель для канала “через
-                        производства” в трёх вариантах: пессимистичном, среднем и позитивном.</p>
-                    <p><strong>Учтены:</strong></p>
-                    <ul style="padding-left: 20px; line-height: 1.6;">
-                        <li>темп подключения производств</li>
-                        <li>конверсии в регистрацию и оплату</li>
-                        <li>отток платящих на подписке</li>
-                        <li>лаг оплаты ~2 недели</li>
-                        <li>себестоимость продукта и единовременные выплаты менеджерам-стартерам</li>
-                        <li>фиксированные расходы на команду и поддержку разработки</li>
-                        <li>разовые платежи на разработку и MVP-тест</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h4>Бюджет на запуск</h4>
-                    <ul class="clean-list" style="margin-top: 10px; color: var(--text-light);">
-                        <li><strong>Минимум:</strong> 1.5 млн ₽ (MVP + тест)</li>
-                        <li><strong>Комфорт:</strong> 1.8 млн ₽ (основная команда)</li>
-                        <li><strong>Ускорение:</strong> 2.2 млн ₽ (запас на гипотезы)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            <h2>Финансовая модель (Средний сценарий)</h2>
 
-
-    <!-- Financial Tables Section -->
-    <section class="section-financial" id="financial-model">
-        <div class="container">
-            <h2 class="centered">Финансовые Сценарии</h2>
-            <p class="subtitle centered">👇 Переключайте вкладки, чтобы увидеть разные сценарии</p>
-
-            <div class="tabs">
-                <button class="tab-btn" onclick="openTab('pessimistic')">Пессимистичный</button>
-                <button class="tab-btn active" onclick="openTab('average')">Средний</button>
-                <button class="tab-btn" onclick="openTab('positive')">Позитивный</button>
+            <!-- Intro & Assumptions -->
+            <div class="text-block" style="max-width: 800px; margin: 0 auto 30px; text-align: left;">
+                <p>Ниже приведён расчёт финансовой модели по среднему сценарию масштабирования через производителей.</p>
+                <h4 style="margin-top: 20px; margin-bottom: 10px;">Ключевые допущения среднего сценария:</h4>
+                <ul style="line-height: 1.6; padding-left: 20px;">
+                    <li><strong>Подключаю 30 производств в месяц</strong> (с месяца релиза).</li>
+                    <li>В среднем на одном производстве <strong>100 активных дилеров</strong>.</li>
+                    <li>Конверсия дилеров в регистрацию: <strong>25%</strong>.</li>
+                    <li>Конверсия из регистрации в оплату: <strong>20%</strong>.</li>
+                    <li>Отток платящих: <strong>20% в месяц</strong>.</li>
+                    <li>Учитываю <strong>лаг оплаты ~2 недели</strong> (в первый месяц релиза считаю половину оплат).
+                    </li>
+                    <li><strong>Экономика:</strong> средний чек 5 000 ₽/мес, себестоимость 2 000 ₽/мес, единоразовое
+                        вознаграждение менеджеру производства 1 000 ₽ с первой оплаты.</li>
+                    <li>Фиксированные расходы команды и поддержки продукта учтены по месяцам.</li>
+                    <li><strong>Инвестиции учитываются траншами:</strong> 1 000 000 ₽ + 600 000 ₽ + 600 000 ₽.</li>
+                </ul>
             </div>
 
-            <!-- Pessimistic Table -->
-            <div id="pessimistic" class="tab-content">
-                <div class="scenario-details">
-                    <div class="grid-2-col" style="gap:20px; text-align: left; align-items: start;">
-                        <div>
-                            <strong>Производства:</strong><br>
-                            М3–М4 = 20/мес<br>
-                            М5+ = 25/мес
-                        </div>
-                        <div>
-                            <strong>Конверсии:</strong> регистрация 20%, оплата 15%<br>
-                            <strong>Отток платящих:</strong> 30%/мес<br>
-                            <strong>Лаг:</strong> 2 недели
-                        </div>
-                    </div>
-                </div>
-                <div class="table-wrapper">
-                    <div class="table-scroll">
-                        <table class="finance-table">
-                            <thead>
-                                <tr>
-                                    <th>Месяц</th>
-                                    <th>Произв</th>
-                                    <th>Рег</th>
-                                    <th>Всего</th>
-                                    <th>Оплаты</th>
-                                    <th>Плат</th>
-                                    <th>Выручка</th>
-                                    <th>COGS</th>
-                                    <th>Награды</th>
-                                    <th>Фикс. расх.</th>
-                                    <th>Разовые</th>
-                                    <th>Чистый</th>
-                                    <th>Накоплено</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>М1</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0.0</td>
-                                    <td>0.0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>500 000</td>
-                                    <td class="neg">-500 000</td>
-                                    <td class="neg">-500 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М2</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0.0</td>
-                                    <td>0.0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>80 000</td>
-                                    <td>0</td>
-                                    <td class="neg">-80 000</td>
-                                    <td class="neg">-580 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М3</td>
-                                    <td>20</td>
-                                    <td>400</td>
-                                    <td>400</td>
-                                    <td>30.0</td>
-                                    <td>30.0</td>
-                                    <td>150 000</td>
-                                    <td>60 000</td>
-                                    <td>30 000</td>
-                                    <td>160 000</td>
-                                    <td>300 000</td>
-                                    <td class="neg">-400 000</td>
-                                    <td class="neg">-980 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М4</td>
-                                    <td>20</td>
-                                    <td>400</td>
-                                    <td>800</td>
-                                    <td>60.0</td>
-                                    <td>81.0</td>
-                                    <td>405 000</td>
-                                    <td>162 000</td>
-                                    <td>60 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="neg">-157 000</td>
-                                    <td class="neg">-1 137 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М5</td>
-                                    <td>25</td>
-                                    <td>500</td>
-                                    <td>1 300</td>
-                                    <td>67.5</td>
-                                    <td>124.2</td>
-                                    <td>621 000</td>
-                                    <td>248 400</td>
-                                    <td>67 500</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="neg">-34 900</td>
-                                    <td class="neg">-1 171 900</td>
-                                </tr>
-                                <tr>
-                                    <td>М6</td>
-                                    <td>25</td>
-                                    <td>500</td>
-                                    <td>1 800</td>
-                                    <td>75.0</td>
-                                    <td>161.9</td>
-                                    <td>809 700</td>
-                                    <td>323 880</td>
-                                    <td>75 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+70 820</td>
-                                    <td class="neg">-1 101 080</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- Chart for Pessimistic -->
-                <div class="chart-container"
-                    style="position: relative; height:400px; width:100%; margin-top: 30px; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color);">
-                    <canvas id="chart-pessimistic"></canvas>
-                </div>
-                <div class="scenario-footer" style="text-align: left;">
-                    <strong>Выводы (пессимистичный):</strong>
-                    <ul style="margin: 10px 0 0 20px; color: #78350F;">
-                        <li>Максимальная кассовая яма: <strong>≈ -1 171 900 ₽</strong> (М5)</li>
-                        <li>Выход в плюс по <strong>ежемесячной прибыли</strong>: <strong>М6</strong></li>
-                        <li>Выход в плюс по <strong>накопленному кэшу</strong>: <strong>примерно М11</strong> (если
-                            дальше держим темп 25 производств/мес)</li>
-                    </ul>
+
+
+
+
+
+            <!-- Table -->
+            <div class="table-wrapper">
+                <div class="table-scroll">
+                    <table class="finance-table">
+                        <thead>
+                            <tr>
+                                <th>Месяц</th>
+                                <th>Произв</th>
+                                <th>Рег (новые)</th>
+                                <th>Рег (всего)</th>
+                                <th>Оплаты (новые)</th>
+                                <th>Активные плат.</th>
+                                <th>Выручка</th>
+                                <th>COGS</th>
+                                <th>Награды</th>
+                                <th>Фикс</th>
+                                <th>Разовые</th>
+                                <th>Опер. поток</th>
+                                <th>Транш</th>
+                                <th>Чистый поток</th>
+                                <th>Кумулятивно (кэш)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>М1</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0.0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>500 000</td>
+                                <td class="neg">-500 000</td>
+                                <td class="pos">+1 000 000</td>
+                                <td class="pos">+500 000</td>
+                                <td class="pos">+500 000</td>
+                            </tr>
+                            <tr>
+                                <td>М2</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0.0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>80 000</td>
+                                <td>0</td>
+                                <td class="neg">-80 000</td>
+                                <td class="pos">+600 000</td>
+                                <td class="pos">+520 000</td>
+                                <td class="pos">+1 020 000</td>
+                            </tr>
+                            <tr>
+                                <td>М3</td>
+                                <td>30</td>
+                                <td>750</td>
+                                <td>750</td>
+                                <td>75</td>
+                                <td>75.0</td>
+                                <td>375 000</td>
+                                <td>150 000</td>
+                                <td>75 000</td>
+                                <td>160 000</td>
+                                <td>300 000</td>
+                                <td class="neg">-310 000</td>
+                                <td class="pos">+600 000</td>
+                                <td class="pos">+290 000</td>
+                                <td class="pos">+1 310 000</td>
+                            </tr>
+                            <tr>
+                                <td>М4</td>
+                                <td>30</td>
+                                <td>750</td>
+                                <td>1 500</td>
+                                <td>150</td>
+                                <td>210.0</td>
+                                <td>1 050 000</td>
+                                <td>420 000</td>
+                                <td>150 000</td>
+                                <td>340 000</td>
+                                <td>0</td>
+                                <td class="pos">+140 000</td>
+                                <td>0</td>
+                                <td class="pos">+140 000</td>
+                                <td class="pos">+1 450 000</td>
+                            </tr>
+                            <tr>
+                                <td>М5</td>
+                                <td>30</td>
+                                <td>750</td>
+                                <td>2 250</td>
+                                <td>150</td>
+                                <td>318.0</td>
+                                <td>1 590 000</td>
+                                <td>636 000</td>
+                                <td>150 000</td>
+                                <td>340 000</td>
+                                <td>0</td>
+                                <td class="pos">+464 000</td>
+                                <td>0</td>
+                                <td class="pos">+464 000</td>
+                                <td class="pos">+1 914 000</td>
+                            </tr>
+                            <tr>
+                                <td>М6</td>
+                                <td>30</td>
+                                <td>750</td>
+                                <td>3 000</td>
+                                <td>150</td>
+                                <td>404.4</td>
+                                <td>2 022 000</td>
+                                <td>808 800</td>
+                                <td>150 000</td>
+                                <td>340 000</td>
+                                <td>0</td>
+                                <td class="pos">+723 200</td>
+                                <td>0</td>
+                                <td class="pos">+723 200</td>
+                                <td class="pos">+2 637 200</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <!-- Average Table -->
-            <div id="average" class="tab-content active">
-                <div class="scenario-details">
-                    <div class="grid-2-col" style="gap:20px; text-align: left; align-items: start;">
-                        <div>
-                            <strong>Производства:</strong> М3+ = 30/мес
-                        </div>
-                        <div>
-                            <strong>Конверсии:</strong> регистрация 25%, оплата 20%<br>
-                            <strong>Отток платящих:</strong> 20%/мес<br>
-                            <strong>Лаг:</strong> 2 недели
-                        </div>
-                    </div>
-                </div>
-                <div class="table-wrapper">
-                    <div class="table-scroll">
-                        <table class="finance-table">
-                            <thead>
-                                <tr>
-                                    <th>Месяц</th>
-                                    <th>Произв</th>
-                                    <th>Рег</th>
-                                    <th>Всего</th>
-                                    <th>Оплаты</th>
-                                    <th>Плат</th>
-                                    <th>Выручка</th>
-                                    <th>COGS</th>
-                                    <th>Награды</th>
-                                    <th>Фикс</th>
-                                    <th>Разовые</th>
-                                    <th>Чистый</th>
-                                    <th>Кумулятивно</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>М1</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0.0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>500 000</td>
-                                    <td class="neg">-500 000</td>
-                                    <td class="neg">-500 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М2</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0.0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>80 000</td>
-                                    <td>0</td>
-                                    <td class="neg">-80 000</td>
-                                    <td class="neg">-580 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М3</td>
-                                    <td>30</td>
-                                    <td>750</td>
-                                    <td>750</td>
-                                    <td>75</td>
-                                    <td>75.0</td>
-                                    <td>375 000</td>
-                                    <td>150 000</td>
-                                    <td>75 000</td>
-                                    <td>160 000</td>
-                                    <td>300 000</td>
-                                    <td class="neg">-310 000</td>
-                                    <td class="neg">-890 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М4</td>
-                                    <td>30</td>
-                                    <td>750</td>
-                                    <td>1 500</td>
-                                    <td>150</td>
-                                    <td>210.0</td>
-                                    <td>1 050 000</td>
-                                    <td>420 000</td>
-                                    <td>150 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+140 000</td>
-                                    <td class="neg">-750 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М5</td>
-                                    <td>30</td>
-                                    <td>750</td>
-                                    <td>2 250</td>
-                                    <td>150</td>
-                                    <td>318.0</td>
-                                    <td>1 590 000</td>
-                                    <td>636 000</td>
-                                    <td>150 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+464 000</td>
-                                    <td class="neg">-286 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М6</td>
-                                    <td>30</td>
-                                    <td>750</td>
-                                    <td>3 000</td>
-                                    <td>150</td>
-                                    <td>404.4</td>
-                                    <td>2 022 000</td>
-                                    <td>808 800</td>
-                                    <td>150 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+723 200</td>
-                                    <td class="pos">+437 200</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- Chart for Average -->
-                <div class="chart-container"
-                    style="position: relative; height:400px; width:100%; margin-top: 30px; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color);">
-                    <canvas id="chart-average"></canvas>
-                </div>
-                <div class="scenario-footer" style="text-align: left;">
-                    <strong>Выводы (средний):</strong>
-                    <ul style="margin: 10px 0 0 20px; color: #78350F;">
-                        <li>Максимальная кассовая яма: <strong>≈ -890 000 ₽</strong> (М3)</li>
-                        <li>Выход в плюс по <strong>ежемесячной прибыли</strong>: <strong>М4</strong></li>
-                        <li>Выход в плюс по <strong>накопленному кэшу</strong>: <strong>М6</strong></li>
-                    </ul>
-                </div>
+            <!-- Chart -->
+            <div class="chart-container"
+                style="position: relative; height:400px; width:100%; margin: 30px auto; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color); max-width: 1000px;">
+                <canvas id="chart-average"></canvas>
             </div>
 
-            <!-- Positive Table -->
-            <div id="positive" class="tab-content">
-                <div class="scenario-details">
-                    <div class="grid-2-col" style="gap:20px; text-align: left; align-items: start;">
-                        <div>
-                            <strong>Производства:</strong><br>
-                            М3–М4 = 30/мес<br>
-                            М5+ = 40/мес
-                        </div>
-                        <div>
-                            <strong>Конверсии:</strong> регистрация 30%, оплата 25%<br>
-                            <strong>Отток платящих:</strong> 10%/мес<br>
-                            <strong>Лаг:</strong> 2 недели
-                        </div>
-                    </div>
-                </div>
-                <div class="table-wrapper">
-                    <div class="table-scroll">
-                        <table class="finance-table">
-                            <thead>
-                                <tr>
-                                    <th>Месяц</th>
-                                    <th>Произв</th>
-                                    <th>Рег</th>
-                                    <th>Всего</th>
-                                    <th>Оплаты</th>
-                                    <th>Плат</th>
-                                    <th>Выручка</th>
-                                    <th>COGS</th>
-                                    <th>Награды</th>
-                                    <th>Фикс</th>
-                                    <th>Разовые</th>
-                                    <th>Чистый</th>
-                                    <th>Кумулятивно</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>М1</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0.0</td>
-                                    <td>0.0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>500 000</td>
-                                    <td class="neg">-500 000</td>
-                                    <td class="neg">-500 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М2</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0.0</td>
-                                    <td>0.0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>80 000</td>
-                                    <td>0</td>
-                                    <td class="neg">-80 000</td>
-                                    <td class="neg">-580 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М3</td>
-                                    <td>30</td>
-                                    <td>900</td>
-                                    <td>900</td>
-                                    <td>112.5</td>
-                                    <td>112.5</td>
-                                    <td>562 500</td>
-                                    <td>225 000</td>
-                                    <td>112 500</td>
-                                    <td>160 000</td>
-                                    <td>300 000</td>
-                                    <td class="neg">-235 000</td>
-                                    <td class="neg">-815 000</td>
-                                </tr>
-                                <tr>
-                                    <td>М4</td>
-                                    <td>30</td>
-                                    <td>900</td>
-                                    <td>1 800</td>
-                                    <td>225.0</td>
-                                    <td>326.3</td>
-                                    <td>1 631 250</td>
-                                    <td>652 500</td>
-                                    <td>225 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+413 750</td>
-                                    <td class="neg">-401 250</td>
-                                </tr>
-                                <tr>
-                                    <td>М5</td>
-                                    <td>40</td>
-                                    <td>1 200</td>
-                                    <td>3 000</td>
-                                    <td>262.5</td>
-                                    <td>556.1</td>
-                                    <td>2 780 625</td>
-                                    <td>1 112 250</td>
-                                    <td>262 500</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+1 065 875</td>
-                                    <td class="pos">+664 625</td>
-                                </tr>
-                                <tr>
-                                    <td>М6</td>
-                                    <td>40</td>
-                                    <td>1 200</td>
-                                    <td>4 200</td>
-                                    <td>300.0</td>
-                                    <td>800.5</td>
-                                    <td>4 002 562</td>
-                                    <td>1 601 025</td>
-                                    <td>300 000</td>
-                                    <td>340 000</td>
-                                    <td>0</td>
-                                    <td class="pos">+1 761 538</td>
-                                    <td class="pos">+2 426 163</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <!-- Chart for Positive -->
-                <div class="chart-container"
-                    style="position: relative; height:400px; width:100%; margin-top: 30px; background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--border-color);">
-                    <canvas id="chart-positive"></canvas>
-                </div>
-                <div class="scenario-footer" style="text-align: left;">
-                    <strong>Выводы (позитивный):</strong>
-                    <ul style="margin: 10px 0 0 20px; color: #78350F;">
-                        <li>Максимальная кассовая яма: <strong>≈ -815 000 ₽</strong> (М3)</li>
-                        <li>Выход в плюс по <strong>ежемесячной прибыли</strong>: <strong>М4</strong></li>
-                        <li>Выход в плюс по <strong>накопленному кэшу</strong>: <strong>М5</strong></li>
-                    </ul>
-                </div>
+            <!-- Footer / Conclusions -->
+            <div class="text-block" style="max-width: 800px; margin: 30px auto 0; text-align: left;">
+                <h3>Что показывает модель:</h3>
+                <ul style="line-height: 1.6; padding-left: 20px;">
+                    <li><strong>Проект выходит в плюс по ежемесячной операционной прибыли на 4-м месяце</strong>
+                        (начиная с М4 чистый операционный поток становится положительным).</li>
+                    <li><strong>Самоокупаемость по накопленному операционному кэшу достигается на 6-м месяце</strong>
+                        (М6).</li>
+                    <li>Максимальная кассовая яма без инвестиций в среднем сценарии — около <strong>-890 000 ₽</strong>
+                        (в районе М3).</li>
+                    <li>При инвестициях траншами 2,2 млн ₽ кассовый разрыв перекрывается с запасом — <strong>проект
+                            сохраняет положительный кэш на всём горизонте расчёта</strong>.</li>
+                </ul>
             </div>
+
+            <!-- Variability Section -->
+            <!-- Variability Section -->
+            <div class="card" style="max-width: 800px; margin: 40px auto 0; text-align: left;">
+                <h3 style="margin-bottom: 20px;">Вариативность сценариев и почему нужна плавающая схема инвестиций</h3>
+                <p>Средний сценарий — это рабочая базовая модель, но фактическая траектория может уйти:</p>
+
+                <div style="margin-top: 20px;">
+                    <strong style="color: #ea580c;">В пессимистичный сценарий (окупаемость дольше)</strong>
+                    <p style="font-size: 0.95rem; margin-top: 5px; color: var(--text-light);">Это произойдёт, если
+                        показатели окажутся ниже ожиданий:</p>
+                    <ul
+                        style="font-size: 0.95rem; margin-top: 5px; margin-bottom: 15px; padding-left: 20px; color: var(--text-light);">
+                        <li>подключаем меньше производств в месяц, чем заложено,</li>
+                        <li>конверсии ниже на этапах дилер → регистрация → оплата,</li>
+                        <li>отток платящих выше.</li>
+                    </ul>
+                    <p style="font-size: 0.95rem; color: var(--text-light);">В этом случае проекту потребуется больше
+                        времени и/или больше усилий, чтобы набрать критическую массу платящих пользователей.</p>
+                </div>
+
+                <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+                    <strong style="color: #059669;">В оптимистичный сценарий (окупаемость быстрее)</strong>
+                    <p style="font-size: 0.95rem; margin-top: 5px; color: var(--text-light);">Это произойдёт, если
+                        показатели окажутся выше ожиданий:</p>
+                    <ul
+                        style="font-size: 0.95rem; margin-top: 5px; margin-bottom: 15px; padding-left: 20px; color: var(--text-light);">
+                        <li>подключаем больше производств в месяц,</li>
+                        <li>конверсии в регистрацию и оплату выше,</li>
+                        <li>отток ниже.</li>
+                    </ul>
+                    <p style="font-size: 0.95rem; color: var(--text-light);">Тогда окупаемость наступает быстрее, а
+                        объём требуемых инвестиций может быть меньше планового.</p>
+                </div>
+
+                <p style="font-size: 1.1rem; margin-top: 30px; font-weight: 500; color: #1e3a8a;">Поэтому я закладываю
+                    плавающую схему финансирования — детали ниже.</p>
+            </div>
+
+
         </div>
     </section>
 
@@ -752,18 +492,9 @@
 
             <div class="text-block"
                 style="text-align: left; max-width: 800px; margin: 0 auto; font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-                <p style="margin-bottom: 20px;">
-                    Потребность в капитале на старт я вижу примерно в районе 2 млн ₽, но точную цифру заранее назвать
-                    невозможно: проект новый.
-                </p>
-                <p style="margin-bottom: 20px;">
-                    Я хочу заложить непредвиденные расходы, возможность быстрее выйти на самоокупаемость за счёт
-                    первичных вложений в маркетинг, а также бюджет на тестирование других маркетинговых гипотез.
-                </p>
-                <p style="margin-bottom: 40px;">
-                    Поэтому мой рабочий диапазон потребности в капитале — от 2 до 3 млн ₽. Итоговая сумма будет зависеть
-                    от того, как быстро проект выйдет на самоокупаемость (см. сценарии выше): если сработает
-                    пессимистичный вариант, потребуется запас прочности; если позитивный — хватит меньшей суммы.
+                <p style="margin-bottom: 40px; font-size: 1.2rem;">
+                    Потребность в капитале — от 2 до 3 млн ₽. Точная сумма зависит от скорости выхода на
+                    самоокупаемость. Заложены: непредвиденные расходы, первичный маркетинг, тестирование гипотез.
                 </p>
 
                 <!-- Tranche Logic -->
